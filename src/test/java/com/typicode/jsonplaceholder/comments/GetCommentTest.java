@@ -37,16 +37,13 @@ public class GetCommentTest{
     @Test
     public void getCommentsVerifyFiltering(){
         List<Comments> deserializedResponse = deserializeToList(response,Comments.class);
-//        deserializedResponse.forEach(item-> System.out.println("Item postId "+item.getPostId()
-//        +" Item id "+item.getId()+" item name "+item.getName()+" item email "+item.getEmail()
-//        +" Item body "+item.getBody()+"------"));
         List<Comments> filteredComments= filterCommentsAccordingToCondition(deserializedResponse,POSTID_1_AND_NON_IN_BODY);
         filteredComments.forEach(item-> System.out.println("Item postId "+item.getPostId()
                 +" Item id "+item.getId()+"body "+item.getBody()+"------"));
 
         assertTrue("One of the body in response does not contain \"non\"",filteredComments.stream().allMatch(comments->comments.getBody().contains("non")));
         assertTrue("One of the postId isn't equal to 1", filteredComments.stream().allMatch(comments -> comments.getPostId()==1));
-        System.out.println("done");
+
     }
 
 
