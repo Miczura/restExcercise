@@ -4,6 +4,7 @@ import com.typicode.jsonplaceholder.utils.Endpoint;
 import com.typicode.jsonplaceholder.utils.StatusCodes;
 import com.typicode.jsonplaceholder.users.Users;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,9 +22,15 @@ public class GetManyUsersTest {
                 .when().get(Endpoint.USERS_ENDPOINT);
     }
     @Test
-    public void getUsersDeserialisationToObjectTest(){
-        List<Users> lista = deserializeToList(response,Users.class);
-        lista.stream().forEach(element-> System.out.println(element.getCompany().getBs()));
+    public void getUsersCountUsersInListTest(){
+        Assert.assertEquals(10,counUsersInResponse());
 
     }
+
+
+    private int counUsersInResponse(){
+        List<Users> usersInResponseList = deserializeToList(response,Users.class);
+        return usersInResponseList.size();
+    }
+
 }
