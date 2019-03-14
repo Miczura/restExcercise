@@ -1,7 +1,7 @@
 package com.typicode.jsonplaceholder.users;
 
-import com.typicode.jsonplaceholder.Endpoint;
-import com.typicode.jsonplaceholder.StatusCodes;
+import com.typicode.jsonplaceholder.utils.Endpoint;
+import com.typicode.jsonplaceholder.utils.StatusCodes;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
