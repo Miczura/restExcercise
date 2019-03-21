@@ -25,7 +25,7 @@ public class GetManyUsersTest {
     }
     @Test
     public void getUsersCountUsersInListTest(){
-        Assert.assertEquals(10,counUsersInResponse());
+        Assert.assertEquals(10,countUsersInResponse());
 
     }
     @Test
@@ -37,7 +37,7 @@ public class GetManyUsersTest {
         List<Users> usersInResponseList = deserializeToList(response,Users.class);
         return usersInResponseList;
     }
-    private int counUsersInResponse(){
+    private int countUsersInResponse(){
 
         return getObjectsFromResponse().size();
     }
