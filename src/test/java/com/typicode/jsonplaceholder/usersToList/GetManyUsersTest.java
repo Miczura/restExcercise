@@ -1,5 +1,6 @@
 package com.typicode.jsonplaceholder.usersToList;
 
+import com.typicode.jsonplaceholder.users.Geo;
 import com.typicode.jsonplaceholder.utils.Endpoint;
 import com.typicode.jsonplaceholder.utils.StatusCodes;
 import com.typicode.jsonplaceholder.users.Users;
@@ -9,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.typicode.jsonplaceholder.utils.DeserializerForListsGeneric.deserializeToList;
 import static io.restassured.RestAssured.given;
@@ -23,14 +25,24 @@ public class GetManyUsersTest {
     }
     @Test
     public void getUsersCountUsersInListTest(){
-        Assert.assertEquals(10,counUsersInResponse());
+        Assert.assertEquals(10,countUsersInResponse());
 
     }
+    @Test
+    public void checkCountOfLattitudeAttibutes(){
+        Assert.assertEquals(10,countLattitudeAttributes());
+    }
 
-
-    private int counUsersInResponse(){
+    private List<Users> getObjectsFromResponse(){
         List<Users> usersInResponseList = deserializeToList(response,Users.class);
-        return usersInResponseList.size();
+        return usersInResponseList;
     }
+    private int countUsersInResponse(){
 
+        return getObjectsFromResponse().size();
+    }
+    private int countLattitudeAttributes(){
+        List<String> lattitudeList = getObjectsFromResponse().stream().map(lattitude->lattitude.getAddress().getGeo().getLat()).collect(Collectors.toList());
+        return lattitudeList.size();
+    }
 }
