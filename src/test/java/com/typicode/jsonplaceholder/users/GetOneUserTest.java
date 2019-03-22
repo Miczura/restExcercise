@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static com.typicode.jsonplaceholder.users.DeserialiserForUsers.deserialiseToUsersObject;
+import static com.typicode.jsonplaceholder.utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -23,6 +23,7 @@ public class GetOneUserTest {
     public void getUsersCheckSizeOfJsonResponseBody(){
         response.then().assertThat().body("size()",is(8));
     }
+
     @Test
     public void getUsersCheckSizeOfAddressAttributeInResponseBody(){
         response.then().assertThat().body("address.size()",is(5));
@@ -35,7 +36,7 @@ public class GetOneUserTest {
     }
     @Test
     public void getUsersDeserialisationToObjectTest(){
-        Users deserialisedUsersResponseObject = deserialiseToUsersObject(response);
+        Users deserialisedUsersResponseObject = deserialiseToAnyObject(response,Users.class);
         Assert.assertTrue("getBs do not contain \"e-market\"",deserialisedUsersResponseObject.getCompany().getBs().contains("e-markets"));
         assertThat(deserialisedUsersResponseObject.getCompany().getBs(),is(equalTo("harness real-time e-markets")));
     }
