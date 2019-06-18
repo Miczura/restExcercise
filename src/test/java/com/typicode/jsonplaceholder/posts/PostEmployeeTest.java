@@ -34,7 +34,6 @@ public class PostEmployeeTest {
     }
 
     private static Employee deserialize(){
-        Employee emp =deserialiseToAnyObject(response,Employee.class);
-        return emp;
+        return deserialiseToAnyObject(response,Employee.class);
     }
 }
