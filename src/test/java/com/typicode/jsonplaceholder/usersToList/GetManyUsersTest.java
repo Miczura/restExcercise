@@ -1,8 +1,7 @@
 package com.typicode.jsonplaceholder.usersToList;
 
-import com.typicode.jsonplaceholder.users.Geo;
-import com.typicode.jsonplaceholder.utils.Endpoint;
-import com.typicode.jsonplaceholder.utils.StatusCodes;
+import utils.Endpoint;
+import utils.StatusCodes;
 import com.typicode.jsonplaceholder.users.Users;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -12,7 +11,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.typicode.jsonplaceholder.utils.DeserializerForListsGeneric.deserializeToList;
+import static utils.DeserializerForListsGeneric.deserializeToList;
 import static io.restassured.RestAssured.given;
 
 

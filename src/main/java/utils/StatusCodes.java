@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder.utils;
+package utils;
 
 public class StatusCodes {
     public static final int SUCCESS = 200;

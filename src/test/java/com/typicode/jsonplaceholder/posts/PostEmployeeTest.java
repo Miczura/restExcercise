@@ -1,15 +1,15 @@
 package com.typicode.jsonplaceholder.posts;
 
 
-import com.typicode.jsonplaceholder.utils.Endpoint;
-import com.typicode.jsonplaceholder.utils.StatusCodes;
+import utils.Endpoint;
+import utils.StatusCodes;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import io.restassured.response.Response;
 import org.junit.Test;
 
 
-import static com.typicode.jsonplaceholder.utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
+import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
 import static io.restassured.RestAssured.*;
 
 public class PostEmployeeTest {
