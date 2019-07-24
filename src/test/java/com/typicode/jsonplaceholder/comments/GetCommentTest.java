@@ -1,8 +1,8 @@
 package com.typicode.jsonplaceholder.comments;
 
 
-import com.typicode.jsonplaceholder.utils.Endpoint;
-import com.typicode.jsonplaceholder.utils.StatusCodes;
+import utils.Endpoint;
+import utils.StatusCodes;
 import io.restassured.response.Response;
 
 import org.junit.BeforeClass;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static com.typicode.jsonplaceholder.utils.DeserializerForListsGeneric.*;
+import static utils.DeserializerForListsGeneric.*;
 import static com.typicode.jsonplaceholder.comments.FilterForComments.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;

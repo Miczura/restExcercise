@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder.utils;
+package utils;
 
 import io.restassured.response.Response;
 

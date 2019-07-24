@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder.utils;
+package utils;
 
 public class Endpoint {
     public static final String COMMENTS_ENDPOINT ="https://jsonplaceholder.typicode.com/comments";
