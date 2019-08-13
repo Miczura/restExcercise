@@ -32,7 +32,7 @@ public class RegresUsersTest {
 
     @Test
     public void getInRegresListUsersCountSecondWay(){
-        Assert.assertEquals("Number of regresUsers is not valid",2,secondMethodTest(response));
+        Assert.assertEquals("Number of regresUsers is not valid",3,secondMethodTest(response));
     }
 
     private int getRegresUsersCount() {
