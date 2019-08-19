@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
 public class RegresUsersTest {
     private static Response response;
 
+
     @BeforeClass
     public static void getRegresUsersEndpoint(){
         response = given().expect().statusCode(StatusCodes.SUCCESS).
@@ -35,12 +37,20 @@ public class RegresUsersTest {
         Assert.assertEquals("Number of regresUsers is not valid",3,getRegresUsersCountSecond(response));
     }
 
+    @Test
+    public void checkPreviousTestWithSoftAssertions(){
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(getRegresUsersCountSecond(response)).isEqualTo(3);
+        softly.assertThat(deserializeResponseUsingObjectMapper(response).getPage()).isEqualTo(2);
+        softly.assertAll();
+    }
+
     private int getRegresUsersSize() {
         RegresUsers responseObject = deserialiseToAnyObject(response, RegresUsers.class);
         responseObject.getData().size();
         return responseObject.getData().size();
     }
-    private RegresUsers deserializeRezponseUsingObjectMapper(Response response){
+    private RegresUsers deserializeResponseUsingObjectMapper(Response response){
         String body =response.getBody().asString();
         RegresUsers responseObject = null;
         try {
@@ -55,6 +65,6 @@ public class RegresUsersTest {
         return responseObject;
     }
     private int getRegresUsersCountSecond(Response response){
-        return deserializeRezponseUsingObjectMapper(response).getData().size();
+        return deserializeResponseUsingObjectMapper(response).getData().size();
     }
 }
