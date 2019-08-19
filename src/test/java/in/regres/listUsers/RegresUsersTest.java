@@ -26,26 +26,25 @@ public class RegresUsersTest {
                 when().get(Endpoint.IN_REGRES_GET_USERS_ENDPOINT);
     }
     @Test
-    public void getInRegresListUsersCount(){
-        Assert.assertEquals("Number of regresUsers is not valid",3,getRegresUsersCount());
+    public void checkInRegresListUsersSize(){
+        Assert.assertEquals("Number of regresUsers is not valid",3,getRegresUsersSize());
     }
 
     @Test
-    public void getInRegresListUsersCountSecondWay(){
-        Assert.assertEquals("Number of regresUsers is not valid",3,secondMethodTest(response));
+    public void checkInRegresListUsersSizeWithObjectMapper(){
+        Assert.assertEquals("Number of regresUsers is not valid",3,getRegresUsersCountSecond(response));
     }
 
-    private int getRegresUsersCount() {
+    private int getRegresUsersSize() {
         RegresUsers responseObject = deserialiseToAnyObject(response, RegresUsers.class);
         responseObject.getData().size();
         return responseObject.getData().size();
     }
-    private int secondMethodTest(Response response){
+    private RegresUsers deserializeRezponseUsingObjectMapper(Response response){
         String body =response.getBody().asString();
-        int size =0;
+        RegresUsers responseObject = null;
         try {
-            RegresUsers response2 = new ObjectMapper().readValue(body, RegresUsers.class);
-            size =response2.getData().size();
+            responseObject = new ObjectMapper().readValue(body, RegresUsers.class);
         } catch (JsonParseException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -53,6 +52,9 @@ public class RegresUsersTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return size;
+        return responseObject;
+    }
+    private int getRegresUsersCountSecond(Response response){
+        return deserializeRezponseUsingObjectMapper(response).getData().size();
     }
 }
