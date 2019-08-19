@@ -18,19 +18,25 @@ public class PostEmployeeTest {
 
     @BeforeClass
     public static void setup(){
-        employee=new Employee("Test","AAAa",20,222);
+        employee=new Employee("Dariusz","Nowak",20,222);
+        System.out.println(employee.toString());
         response = given().contentType("application/json").body(employee).expect().statusCode(StatusCodes.CREATED)
                 .when().post(Endpoint.POSTS_ENDPOINT);
     }
 
     @Test
-    public void checkNameInResponse(){
+    public void checkNameOfCreatedEmployee(){
 
-        Assert.assertTrue(deserialize().getName().equals("Test"));
+        Assert.assertTrue(deserialize().getName().equals("Dariusz"));
     }
     @Test
-    public void checkSurnameInResponze(){
-        Assert.assertEquals("Surname is not equal to expected","AAAa",deserialize().getSurname());
+    public void checkSurnameOfCreatedEmployee(){
+        Assert.assertEquals("Surname is not equal to expected","Nowak",deserialize().getSurname());
+    }
+
+    @Test
+    public void checkEpmloyeeUserId(){
+        Assert.assertEquals("Employee has different UserId than expected",20,deserialize().getUserId());
     }
 
     private static Employee deserialize(){
