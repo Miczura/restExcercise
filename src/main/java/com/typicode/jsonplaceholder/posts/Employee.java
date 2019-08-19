@@ -46,6 +46,6 @@ public class Employee {
     }
 
     public String toString(){
-        return getClass().getName()+"{name= "+ this.userId+" surname= "+this.surname+" userID= "+this.userId+" id= "+this.id+"]";
+        return getClass().getName()+"{name= "+ this.name+" surname= "+this.surname+" userID= "+this.userId+" id= "+this.id+"]";
     }
 }
