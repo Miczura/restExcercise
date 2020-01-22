@@ -1,6 +1,7 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-
+/allure-results/
+/.allure/
 ### STS ###
 .apt_generated
 .classpath
