@@ -44,7 +44,7 @@ public class RegresUsersTest {
     }
 
     @Test
-    public void checkPreviousTestWithSoftAssertions(){
+    public void checkInRegresListUsersSizeWithSoftAssertions(){
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(getRegresUsersCountSecond(response)).isEqualTo(6);
         softly.assertThat(deserializeResponseUsingObjectMapper(response).getPage()).isEqualTo(2);
