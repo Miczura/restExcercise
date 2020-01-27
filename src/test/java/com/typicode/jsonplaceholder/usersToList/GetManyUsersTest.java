@@ -28,8 +28,8 @@ public class GetManyUsersTest {
 
     }
     @Test
-    public void checkCountOfLattitudeAttibutes(){
-        Assert.assertEquals(10,countLattitudeAttributes());
+    public void checkCountOfLatitudeAttributes(){
+        Assert.assertEquals(10,countLatitudeAttributes());
     }
 
     private List<Users> getObjectsFromResponse(){
@@ -40,8 +40,8 @@ public class GetManyUsersTest {
 
         return getObjectsFromResponse().size();
     }
-    private int countLattitudeAttributes(){
-        List<String> lattitudeList = getObjectsFromResponse().stream().map(lattitude->lattitude.getAddress().getGeo().getLat()).collect(Collectors.toList());
-        return lattitudeList.size();
+    private int countLatitudeAttributes(){
+        List<String> latitudeList = getObjectsFromResponse().stream().map(latitude->latitude.getAddress().getGeo().getLat()).collect(Collectors.toList());
+        return latitudeList.size();
     }
 }

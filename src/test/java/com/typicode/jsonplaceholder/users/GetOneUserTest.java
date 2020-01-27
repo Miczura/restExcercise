@@ -26,39 +26,39 @@ public class GetOneUserTest {
         deserialisedUsersResponseObject = deserialiseToAnyObject(response,Users.class);
     }
     @Test
-    public void CheckSizeOfJsonResponseBody(){
+    public void checkSizeOfResponseBody(){
         response.then().assertThat().body("size()",is(8));
     }
 
     @Test
-    public void CheckSizeOfAddressAttributeInResponseBody(){
+    public void checkSizeOfAddressAttributeInResponseBody(){
         response.then().assertThat().body("address.size()",is(5));
     }
 
     @Test
-    public void CheckLongnitudeInResponeBody(){
+    public void checkLongitudeInResponseBody(){
         response.then().assertThat().body("address.geo.lng",equalTo("81.1496"));
         System.out.println("Test Passed");
     }
     @Test
-    public void checkgetBsAttributeValuetTest(){
+    public void checkGetBsAttributeValueTest(){
 
         Assert.assertTrue("getBs attribute do not contain \"e-market\"",deserialisedUsersResponseObject.getCompany().getBs().contains("e-markets"));
         assertThat(deserialisedUsersResponseObject.getCompany().getBs(),is(equalTo("harness real-time e-markets")));
     }
 
     @Test
-    public void checkUserIdObjetMapperTest(){
+    public void checkUserIdObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getId(),is(1));
     }
 
     @Test
-    public void checkUserNameObjetMapperTest(){
+    public void checkUserNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getName(),is(equalTo("Leanne Graham")));
     }
 
     @Test
-    public void checkNameObjetMapperTest(){
+    public void checkNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getUsername(),is(equalTo("Bret")));
     }
 
