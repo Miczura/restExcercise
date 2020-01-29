@@ -1,0 +1,30 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('Checkout') {
+         steps {
+            git 'https://github.com/Miczura/restExcercise.git'
+
+            }
+        }
+      stage('Test')  {
+          steps{
+              sh "mvn clean test"
+          }
+      }
+      stage('reporting') {
+        steps {
+            script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'target/allure-results']]
+                    ])
+                }
+            }
+        }
+    }
+}
