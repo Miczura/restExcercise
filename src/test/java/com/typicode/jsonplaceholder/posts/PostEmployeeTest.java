@@ -9,7 +9,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 
-import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
+import static utils.DeserializerForSingleObjectGeneric.deserializeToAnyObject;
 import static io.restassured.RestAssured.*;
 
 public class PostEmployeeTest {
@@ -39,6 +39,6 @@ public class PostEmployeeTest {
     }
 
     private static Employee deserialize(){
-        return deserialiseToAnyObject(response,Employee.class);
+        return deserializeToAnyObject(response,Employee.class);
     }
 }
