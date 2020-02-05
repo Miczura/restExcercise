@@ -34,7 +34,7 @@ public class GetCommentTest{
     @Description("Verify if response size is not empty and body contains email Jayne_Kuhic@sydney.com")
     public void getCommentsCheckResponseLengthAndEmailConditions(){
         response.then().assertThat().body("",hasSize(greaterThan(0))).
-                and().body("email",hasItem("Jayne_Kuhic@sydney.com"));
+                and().body("email",hasItem("J_Kuhic@sydney.com"));
 
     }
     @Test
