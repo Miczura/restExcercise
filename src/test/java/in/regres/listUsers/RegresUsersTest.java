@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
+import static utils.DeserializerForSingleObjectGeneric.deserializeToAnyObject;
 
 
 public class RegresUsersTest {
@@ -52,7 +52,7 @@ public class RegresUsersTest {
     }
 
     private int getRegresUsersSize() {
-        RegresUsers responseObject = deserialiseToAnyObject(response, RegresUsers.class);
+        RegresUsers responseObject = deserializeToAnyObject(response, RegresUsers.class);
         responseObject.getData().size();
         return responseObject.getData().size();
     }

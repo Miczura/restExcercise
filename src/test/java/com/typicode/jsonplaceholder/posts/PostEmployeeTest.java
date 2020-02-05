@@ -1,6 +1,7 @@
 package com.typicode.jsonplaceholder.posts;
 
 
+import io.qameta.allure.Description;
 import utils.Endpoint;
 import utils.StatusCodes;
 import org.junit.Assert;
@@ -9,7 +10,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 
-import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
+import static utils.DeserializerForSingleObjectGeneric.deserializeToAnyObject;
 import static io.restassured.RestAssured.*;
 
 public class PostEmployeeTest {
@@ -24,21 +25,25 @@ public class PostEmployeeTest {
     }
 
     @Test
+    @Description("Verify name of created user")
     public void checkNameOfCreatedEmployee(){
 
         Assert.assertTrue(deserialize().getName().equals("Dariusz"));
     }
+
     @Test
+    @Description("Verify surname of created user")
     public void checkSurnameOfCreatedEmployee(){
         Assert.assertEquals("Surname is not equal to expected","Nowak",deserialize().getSurname());
     }
 
     @Test
+    @Description("Verify userId of created user")
     public void checkEpmloyeeUserId(){
         Assert.assertEquals("Employee has different UserId than expected",20,deserialize().getUserId());
     }
 
     private static Employee deserialize(){
-        return deserialiseToAnyObject(response,Employee.class);
+        return deserializeToAnyObject(response,Employee.class);
     }
 }

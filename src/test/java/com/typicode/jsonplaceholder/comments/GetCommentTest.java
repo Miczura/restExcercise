@@ -1,6 +1,8 @@
 package com.typicode.jsonplaceholder.comments;
 
 
+
+import io.qameta.allure.Description;
 import utils.Endpoint;
 import utils.StatusCodes;
 import io.restassured.response.Response;
@@ -29,12 +31,14 @@ public class GetCommentTest{
                 when().get(Endpoint.COMMENTS_ENDPOINT);
     }
     @Test
+    @Description("Verify if response size is not empty and body contains email Jayne_Kuhic@sydney.com")
     public void getCommentsCheckResponseLengthAndEmailConditions(){
         response.then().assertThat().body("",hasSize(greaterThan(0))).
                 and().body("email",hasItem("Jayne_Kuhic@sydney.com"));
 
     }
     @Test
+    @Description("Verify if response contains such comments with postId = 1 and containing word 'non' in body ")
     public void getCommentsVerifyFiltering(){
         List<Comments> deserializedResponse = deserializeToList(response,Comments.class);
         List<Comments> filteredComments= filterCommentsAccordingToCondition(deserializedResponse,POSTID_1_AND_NON_IN_BODY);
