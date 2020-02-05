@@ -2,6 +2,7 @@ package com.typicode.jsonplaceholder.users;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Description;
 import utils.Endpoint;
 import utils.StatusCodes;
 import io.restassured.response.Response;
@@ -25,22 +26,28 @@ public class GetOneUserTest {
                 .when().get(Endpoint.USERS_1_ENDPOINT);
         deserialisedUsersResponseObject = deserializeToAnyObject(response,Users.class);
     }
+
     @Test
+    @Description("Verify response size")
     public void checkSizeOfResponseBody(){
         response.then().assertThat().body("size()",is(8));
     }
 
     @Test
+    @Description("Verify address attribute size")
     public void checkSizeOfAddressAttributeInResponseBody(){
         response.then().assertThat().body("address.size()",is(5));
     }
 
     @Test
+    @Description("Verify longitude attribute value")
     public void checkLongitudeInResponseBody(){
         response.then().assertThat().body("address.geo.lng",equalTo("81.1496"));
         System.out.println("Test Passed");
     }
+
     @Test
+    @Description("Verify getBs attribute value ")
     public void checkGetBsAttributeValueTest(){
 
         Assert.assertTrue("getBs attribute do not contain \"e-market\"",deserialisedUsersResponseObject.getCompany().getBs().contains("e-markets"));
@@ -48,16 +55,19 @@ public class GetOneUserTest {
     }
 
     @Test
+    @Description("Verify getId attribute value")
     public void checkUserIdObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getId(),is(1));
     }
 
     @Test
+    @Description("Verify name attribute value")
     public void checkUserNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getName(),is(equalTo("Leanne Graham")));
     }
 
     @Test
+    @Description("Verify username attribute value")
     public void checkNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getUsername(),is(equalTo("Bret")));
     }
