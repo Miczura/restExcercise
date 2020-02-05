@@ -31,7 +31,7 @@ public class GetCommentTest{
     @Test
     public void getCommentsCheckResponseLengthAndEmailConditions(){
         response.then().assertThat().body("",hasSize(greaterThan(0))).
-                and().body("email",hasItem("Jayne_Kuhic@sydney.com"));
+                and().body("email",hasItem("hic@sydney.com"));
 
     }
     @Test
