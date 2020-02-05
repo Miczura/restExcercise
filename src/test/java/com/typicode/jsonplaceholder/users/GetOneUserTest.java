@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static utils.DeserialiserForSingleObjectGeneric.deserialiseToAnyObject;
+import static utils.DeserializerForSingleObjectGeneric.deserializeToAnyObject;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -23,7 +23,7 @@ public class GetOneUserTest {
     public static void getUsersEndpoint(){
         response = given().expect().statusCode(StatusCodes.SUCCESS)
                 .when().get(Endpoint.USERS_1_ENDPOINT);
-        deserialisedUsersResponseObject = deserialiseToAnyObject(response,Users.class);
+        deserialisedUsersResponseObject = deserializeToAnyObject(response,Users.class);
     }
     @Test
     public void checkSizeOfResponseBody(){
