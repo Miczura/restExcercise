@@ -1,5 +1,6 @@
 package com.typicode.jsonplaceholder.usersToList;
 
+import io.qameta.allure.Description;
 import utils.Endpoint;
 import utils.StatusCodes;
 import com.typicode.jsonplaceholder.users.Users;
@@ -22,12 +23,16 @@ public class GetManyUsersTest {
         response = given().expect().statusCode(StatusCodes.SUCCESS)
                 .when().get(Endpoint.USERS_ENDPOINT);
     }
+
     @Test
+    @Description("Verify number of users in response")
     public void getUsersCountUsersInListTest(){
         Assert.assertEquals(10,countUsersInResponse());
 
     }
+
     @Test
+    @Description("Verify number of latitude attributes in response")
     public void checkCountOfLatitudeAttributes(){
         Assert.assertEquals(10,countLatitudeAttributes());
     }
