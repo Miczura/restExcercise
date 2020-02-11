@@ -43,7 +43,6 @@ public class GetOneUserTest {
     @Description("Verify longitude attribute value")
     public void checkLongitudeInResponseBody(){
         response.then().assertThat().body("address.geo.lng",equalTo("81.1496"));
-        System.out.println("Test Passed");
     }
 
     @Test
