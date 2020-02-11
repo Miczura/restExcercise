@@ -2,6 +2,7 @@ package com.typicode.jsonplaceholder.users;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Description;
 import utils.Endpoint;
 import utils.StatusCodes;
 import io.restassured.response.Response;
@@ -26,21 +27,24 @@ public class GetOneUserTest {
         deserialisedUsersResponseObject = deserializeToAnyObject(response,Users.class);
     }
     @Test
+    @Description("Verify response body size")
     public void checkSizeOfResponseBody(){
         response.then().assertThat().body("size()",is(8));
     }
 
     @Test
+    @Description("Verify size od address attribute in response")
     public void checkSizeOfAddressAttributeInResponseBody(){
         response.then().assertThat().body("address.size()",is(5));
     }
 
     @Test
+    @Description("Verify longiture attribute value")
     public void checkLongitudeInResponseBody(){
         response.then().assertThat().body("address.geo.lng",equalTo("81.1496"));
-        System.out.println("Test Passed");
     }
     @Test
+    @Description("Verify if getBs attribute contains 'e-market' and its whole value")
     public void checkGetBsAttributeValueTest(){
 
         Assert.assertTrue("getBs attribute do not contain \"e-market\"",deserialisedUsersResponseObject.getCompany().getBs().contains("e-markets"));
@@ -48,16 +52,19 @@ public class GetOneUserTest {
     }
 
     @Test
+    @Description("Verify userId attribute value in response using object mapper")
     public void checkUserIdObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getId(),is(1));
     }
 
     @Test
+    @Description("Verify username attribute value with object mapper")
     public void checkUserNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getName(),is(equalTo("Leanne Graham")));
     }
 
     @Test
+    @Description("Verify name attribute using object mapper")
     public void checkNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getUsername(),is(equalTo("Bret")));
     }
