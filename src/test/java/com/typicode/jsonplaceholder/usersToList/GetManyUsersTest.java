@@ -1,7 +1,9 @@
 package com.typicode.jsonplaceholder.usersToList;
 
 import io.qameta.allure.Description;
+import org.junit.After;
 import utils.Endpoint;
+import utils.SaveResponse;
 import utils.StatusCodes;
 import com.typicode.jsonplaceholder.users.Users;
 import io.restassured.response.Response;
@@ -35,6 +37,11 @@ public class GetManyUsersTest {
     @Description("Verify number of latitude attributes in response")
     public void checkCountOfLatitudeAttributes(){
         Assert.assertEquals(10,countLatitudeAttributes());
+    }
+
+    @After
+    public void onTeardown(){
+        SaveResponse.saveResponse(response.getBody().asString(),response.getStatusCode(),response.getHeaders().asList());
     }
 
     private List<Users> getObjectsFromResponse(){

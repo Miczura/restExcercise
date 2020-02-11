@@ -3,7 +3,9 @@ package com.typicode.jsonplaceholder.users;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Description;
+import org.junit.After;
 import utils.Endpoint;
+import utils.SaveResponse;
 import utils.StatusCodes;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -69,6 +71,11 @@ public class GetOneUserTest {
     @Description("Verify username attribute value")
     public void checkNameObjectMapperTest(){
         assertThat(deserializeResponseToObject(response).getUsername(),is(equalTo("Bret")));
+    }
+
+    @After
+    public void onTeardown(){
+        SaveResponse.saveResponse(response.getBody().asString(),response.getStatusCode(),response.getHeaders().asList());
     }
 
     private Users deserializeResponseToObject(Response response)  {
