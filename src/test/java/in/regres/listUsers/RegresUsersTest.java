@@ -8,10 +8,12 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.Endpoint;
+import utils.SaveResponse;
 import utils.StatusCodes;
 
 
@@ -54,6 +56,11 @@ public class RegresUsersTest {
         softly.assertThat(getRegresUsersCountSecond(response)).isEqualTo(6);
         softly.assertThat(deserializeResponseUsingObjectMapper(response).getPage()).isEqualTo(2);
         softly.assertAll();
+    }
+
+    @After
+    public void onTeardown(){
+        SaveResponse.saveResponse(response.getBody().asString(),response.getStatusCode(),response.getHeaders().asList());
     }
 
     private int getRegresUsersSize() {

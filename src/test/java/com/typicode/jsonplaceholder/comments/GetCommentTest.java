@@ -3,7 +3,9 @@ package com.typicode.jsonplaceholder.comments;
 
 
 import io.qameta.allure.Description;
+import org.junit.After;
 import utils.Endpoint;
+import utils.SaveResponse;
 import utils.StatusCodes;
 import io.restassured.response.Response;
 
@@ -46,6 +48,9 @@ public class GetCommentTest{
         assertTrue("One of the postId isn't equal to 1", filteredComments.stream().allMatch(comments -> comments.getPostId()==1));
 
     }
-
+    @After
+    public void onTeardown(){
+        SaveResponse.saveResponse(response.getBody().asString(),response.getStatusCode(),response.getHeaders().asList());
+    }
 
 }

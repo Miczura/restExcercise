@@ -2,7 +2,9 @@ package com.typicode.jsonplaceholder.posts;
 
 
 import io.qameta.allure.Description;
+import org.junit.After;
 import utils.Endpoint;
+import utils.SaveResponse;
 import utils.StatusCodes;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -42,7 +44,10 @@ public class PostEmployeeTest {
     public void checkEpmloyeeUserId(){
         Assert.assertEquals("Employee has different UserId than expected",20,deserialize().getUserId());
     }
-
+    @After
+    public void onTeardown(){
+        SaveResponse.saveResponse(response.getBody().asString(),response.getStatusCode(),response.getHeaders().asList());
+    }
     private static Employee deserialize(){
         return deserializeToAnyObject(response,Employee.class);
     }
