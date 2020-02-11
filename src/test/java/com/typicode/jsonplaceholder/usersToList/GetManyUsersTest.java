@@ -23,12 +23,14 @@ public class GetManyUsersTest {
         response = given().expect().statusCode(StatusCodes.SUCCESS)
                 .when().get(Endpoint.USERS_ENDPOINT);
     }
+
     @Test
     @Description("Verify number of users in response")
     public void getUsersCountUsersInListTest(){
         Assert.assertEquals(10,countUsersInResponse());
 
     }
+
     @Test
     @Description("Verify number of latitude attributes in response")
     public void checkCountOfLatitudeAttributes(){

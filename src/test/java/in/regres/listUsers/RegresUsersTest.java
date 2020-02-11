@@ -3,6 +3,7 @@ package in.regres.listUsers;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Description;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
@@ -33,17 +34,21 @@ public class RegresUsersTest {
         List<Header> list = headers.asList();
         list.stream().forEach(element-> System.out.println(element.getName()+" AAAAA "+element.getValue()));
     }
+
     @Test
+    @Description("Verify number of user accounts")
     public void checkInRegresListUsersSize(){
         Assert.assertEquals("Number of regresUsers is not valid",6,getRegresUsersSize());
     }
 
     @Test
+    @Description("Verify number of user accounts second way")
     public void checkInRegresListUsersSizeWithObjectMapper(){
         Assert.assertEquals("Number of regresUsers is not valid",6,getRegresUsersCountSecond(response));
     }
 
     @Test
+    @Description("Verify number of user accounts using soft assertions")
     public void checkInRegresListUsersSizeWithSoftAssertions(){
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(getRegresUsersCountSecond(response)).isEqualTo(6);
