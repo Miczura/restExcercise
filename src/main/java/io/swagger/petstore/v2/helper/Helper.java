@@ -149,7 +149,7 @@ public class Helper {
 
     public static void deletePetsOnTeardown(String endpoint,long... itemToDelete){
         for (long s: itemToDelete){
-            System.out.println(s);
+
             given()
                     .contentType("application/json")
                     .expect()
