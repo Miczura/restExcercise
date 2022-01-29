@@ -8,7 +8,7 @@ public class RegresUsers {
     private int total;
     private int total_pages;
     private List<Data> data;
-    private Ad ad;
+    private Support support;
     public RegresUsers(){
 
     }
@@ -33,7 +33,7 @@ public class RegresUsers {
         return data;
     }
 
-    public Ad getAd() {
-        return ad;
+    public Support getSupport() {
+        return support;
     }
 }
